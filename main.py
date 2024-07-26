@@ -8,19 +8,21 @@ from uuid import uuid1
 minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
 
 
+
+
 class ExpenseTracker(QMainWindow):
     def __init__(self):
         super(ExpenseTracker, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-
         self.ui.PlayButtonJAVA.clicked.connect(self.run)
         self.setStyleSheet(f"QMainWindow {{ border-image: url('Image (1).png') 0 0 0 0 stretch stretch; }}")
 
     def run(self):
-        version = '1.16.5'
-        username = 'kilka'
+        version = input('vers')
+        username = input('name')
+
 
         minecraft_launcher_lib.install.install_minecraft_version(versionid=version, minecraft_directory=minecraft_directory)
         options = {
