@@ -1,0 +1,144 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ZOV launcher main.py\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
++++ b/main.py	(date 1721986496912)
+@@ -1,1 +1,0 @@
+-#ZOV launcher main.py
+Index: FabricInstall.py
+===================================================================
+diff --git a/FabricInstall.py b/FabricInstall.py
+deleted file mode 100644
+--- a/FabricInstall.py	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
++++ /dev/null	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
+@@ -1,20 +0,0 @@
+-#ZOV launcher main.py
+-#Пример кода скачивания фабрика с офф документации
+-import minecraft_launcher_lib
+-import sys
+-
+-
+-def main():
+-    vanilla_version = input("Select the Minecraft version for which you want to install fabric:")
+-    if not minecraft_launcher_lib.fabric.is_minecraft_version_supported(vanilla_version):
+-        print("This version is not supported by fabric")
+-        sys.exit(0)
+-    minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
+-    callback = {
+-        "setStatus": lambda text: print(text)
+-    }
+-    minecraft_launcher_lib.fabric.install_fabric(vanilla_version, minecraft_directory, callback=callback)
+-
+-
+-if __name__ == "__main__":
+-    main()
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.10 (ZOVlauncher)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10 (ZOVlauncher)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
++++ b/.idea/misc.xml	(date 1721983979011)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.10 (ZOVlauncher)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (ZOVlauncher)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (ZOVLauncher)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"create main/fabric.py\">\r\n      <change afterPath=\"$PROJECT_DIR$/Image (1).png\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/ui_test.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;ZOVcreators&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/ZOVcreators/ZOV-launcher.git&quot;,\r\n    &quot;accountId&quot;: &quot;7abbb040-f38f-4ded-9eca-596528beb8dd&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2jkw70e1ccAxvbxHsanoacyzq7p\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.designer.executor\": \"Run\",\r\n    \"Python.gui.executor\": \"Run\",\r\n    \"Python.main.executor\": \"Run\",\r\n    \"Python.ui_test.executor\": \"Run\",\r\n    \"Python.untitled.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\Program Files (x86)\\PycharmProjects\\ZOVlauncher\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"\" />\r\n      <created>1721944211939</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1721944211939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"create rep\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721944315068</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721944315068</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721945255599</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721945255599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721952175060</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721952175060</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"create rep\" />\r\n    <MESSAGE value=\"create main/fabric.py\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"create main/fabric.py\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
++++ b/.idea/workspace.xml	(date 1721984244896)
+@@ -5,9 +5,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="create main/fabric.py">
+-      <change afterPath="$PROJECT_DIR$/Image (1).png" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/ui_test.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/FabricInstall.py" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -47,21 +49,14 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    "Python.designer.executor": "Run",
+-    "Python.gui.executor": "Run",
+     "Python.main.executor": "Run",
+     "Python.ui_test.executor": "Run",
+     "Python.untitled.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "git-widget-placeholder": "master",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
++    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+   }
+ }]]></component>
+-  <component name="RecentsManager">
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="E:\Program Files (x86)\PycharmProjects\ZOVlauncher" />
+-    </key>
+-  </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+@@ -94,15 +89,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1721945255599</updated>
+     </task>
+-    <task id="LOCAL-00003" summary="create main/fabric.py">
+-      <option name="closed" value="true" />
+-      <created>1721952175060</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1721952175060</updated>
+-    </task>
+-    <option name="localTasksCounter" value="4" />
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+Index: .idea/ZOVlauncher.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/ZOVlauncher.iml b/.idea/ZOVlauncher.iml
+--- a/.idea/ZOVlauncher.iml	(revision 953fb11cd6903c0fa017d148107210810d69ce31)
++++ b/.idea/ZOVlauncher.iml	(date 1721983988934)
+@@ -3,8 +3,9 @@
+   <component name="NewModuleRootManager">
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
++      <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="Python 3.11 (ZOVLauncher)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file

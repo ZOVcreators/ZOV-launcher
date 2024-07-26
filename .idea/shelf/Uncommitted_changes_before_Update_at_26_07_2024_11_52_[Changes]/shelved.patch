@@ -1,0 +1,297 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ZOV launcher main.py\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
++++ b/main.py	(date 1721957835089)
+@@ -1,1 +1,122 @@
+ #ZOV launcher main.py
++#!/usr/bin/env python3
++# This example shows a simple launcher with PyQt that shows the output of Minecraft in a text filed
++from PyQt6.QtWidgets import QApplication, QWidget, QPlainTextEdit, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox, QHBoxLayout, QVBoxLayout
++from PyQt6.QtCore import QProcess
++import minecraft_launcher_lib
++import sys
++
++
++class GameOutputWidget(QPlainTextEdit):
++    def __init__(self, launch_button):
++        super().__init__()
++        self.setReadOnly(True)
++        self.launch_button = launch_button
++        # Disable line wrap
++        self.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
++
++    def display_output(self):
++        # This function displays the output of Minecraft in the text field
++        cursor = self.textCursor()
++        cursor.movePosition(cursor.MoveOperation.End)
++        cursor.insertText(bytes(self.process.readAll()).decode())
++        cursor.movePosition(cursor.MoveOperation.End)
++        self.ensureCursorVisible()
++
++    def execute_command(self, command):
++        # QProcess.start takes as first argument the program and as second the list of arguments
++        # So we need the filter the program from the command
++        arguments = command[1:]
++        # Deactivate the launch button
++        self.launch_button.setEnabled(False)
++        # Clear the text  field
++        self.setPlainText("")
++        self.process = QProcess(self)
++        # Activate the launch button when Minecraft is closed
++        self.process.finished.connect(lambda: self.launch_button.setEnabled(True))
++        # Connect the function to display the output
++        self.process.readyRead.connect(self.dataReady)
++        # Start Minecraft
++        self.process.start("java", arguments)
++
++
++class MainWindow(QWidget):
++    def __init__(self):
++        super().__init__()
++        self.username_edit = QLineEdit()
++        self.password_edit = QLineEdit()
++        self.version_select = QComboBox()
++        launch_button = QPushButton("Launch")
++        self.output_widget = GameOutputWidget(launch_button)
++
++        # Set the password field to display *
++        self.password_edit.setEchoMode(QLineEdit.EchoMode.Password)
++
++        launch_button.clicked.connect(self.launch_minecraft)
++
++        # Add all versions to the Version ComboBox
++        self.minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
++        for i in minecraft_launcher_lib.utils.get_available_versions(self.minecraft_directory):
++            # Only add release versions
++            if i["type"] == "release":
++                self.version_select.addItem(i["id"])
++
++        # Create the layouts
++        bottom_layout = QHBoxLayout()
++        bottom_layout.addWidget(QLabel("Username:"))
++        bottom_layout.addWidget(self.username_edit)
++        bottom_layout.addWidget(QLabel("Password:"))
++        bottom_layout.addWidget(self.password_edit)
++        bottom_layout.addWidget(QLabel("Version:"))
++        bottom_layout.addWidget(self.version_select)
++        bottom_layout.addWidget(launch_button)
++
++        main_layout = QVBoxLayout()
++        main_layout.addWidget(self.output_widget)
++        main_layout.addLayout(bottom_layout)
++
++        self.setLayout(main_layout)
++        self.setGeometry(0, 0, 800, 600)
++        self.setWindowTitle("PyQt Launcher with Output")
++
++    def launch_minecraft(self):
++        # Get the selected version
++        version = self.version_select.currentText()
++
++        # Make sure the version is installed
++        minecraft_launcher_lib.install.install_minecraft_version(version, self.minecraft_directory)
++
++        # Login
++        login_data = minecraft_launcher_lib.account.login_user(self.username_edit.text(), self.password_edit.text())
++
++        # Check if the login is correct
++        if "errorMessage" in login_data:
++            message_box = QMessageBox()
++            message_box.setWindowTitle("Invalid credentials")
++            message_box.setText("Invalid username or password")
++            message_box.setStandardButtons(QMessageBox.StandardButtons.Ok)
++            message_box.exec()
++            return
++
++        options = {
++            "username": login_data["selectedProfile"]["name"],
++            "uuid": login_data["selectedProfile"]["id"],
++            "token": login_data["accessToken"]
++        }
++
++        # Get the command
++        command = minecraft_launcher_lib.command.get_minecraft_command(version, self.minecraft_directory, options)
++
++        # Call the function from the
++        self.output_widget.execute_command(command)
++
++
++def main():
++    app = QApplication(sys.argv)
++    w = MainWindow()
++    w.show()
++    sys.exit(app.exec())
++
++
++if __name__ == "__main__":
++    main()
+\ No newline at end of file
+Index: FabricInstall.py
+===================================================================
+diff --git a/FabricInstall.py b/FabricInstall.py
+deleted file mode 100644
+--- a/FabricInstall.py	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
++++ /dev/null	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
+@@ -1,20 +0,0 @@
+-#ZOV launcher main.py
+-#Пример кода скачивания фабрика с офф документации
+-import minecraft_launcher_lib
+-import sys
+-
+-
+-def main():
+-    vanilla_version = input("Select the Minecraft version for which you want to install fabric:")
+-    if not minecraft_launcher_lib.fabric.is_minecraft_version_supported(vanilla_version):
+-        print("This version is not supported by fabric")
+-        sys.exit(0)
+-    minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
+-    callback = {
+-        "setStatus": lambda text: print(text)
+-    }
+-    minecraft_launcher_lib.fabric.install_fabric(vanilla_version, minecraft_directory, callback=callback)
+-
+-
+-if __name__ == "__main__":
+-    main()
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.10 (ZOVlauncher)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10 (ZOVlauncher)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
++++ b/.idea/misc.xml	(date 1721952518967)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.10 (ZOVlauncher)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (ZOVlauncher)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (ZOVLauncher)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"create main/fabric.py\">\r\n      <change beforePath=\"$PROJECT_DIR$/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"ZOVcreators\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/ZOVcreators/ZOV-launcher.git\",\r\n    \"accountId\": \"7abbb040-f38f-4ded-9eca-596528beb8dd\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 7\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2jkw70e1ccAxvbxHsanoacyzq7p\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"\" />\r\n      <created>1721944211939</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1721944211939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"create rep\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721944315068</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721944315068</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721945255599</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721945255599</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"create rep\" />\r\n    <MESSAGE value=\"create main/fabric.py\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"create main/fabric.py\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
++++ b/.idea/workspace.xml	(date 1721957972534)
+@@ -4,7 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="create main/fabric.py">
++    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="bkjn">
++      <change beforePath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/FabricInstall.py" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -22,21 +26,21 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "ZOVcreators"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;ZOVcreators&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/ZOVcreators/ZOV-launcher.git",
+-    "accountId": "7abbb040-f38f-4ded-9eca-596528beb8dd"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/ZOVcreators/ZOV-launcher.git&quot;,
++    &quot;accountId&quot;: &quot;7abbb040-f38f-4ded-9eca-596528beb8dd&quot;
+   }
+-}]]></component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 7
+-}]]></component>
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 7
++}</component>
+   <component name="ProjectId" id="2jkw70e1ccAxvbxHsanoacyzq7p" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -45,9 +49,10 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Python.main.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "git-widget-placeholder": "master",
+-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
++    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+   }
+ }]]></component>
+   <component name="SharedIndexes">
+@@ -82,12 +87,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1721945255599</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="bkjn">
++      <option name="closed" value="true" />
++      <created>1721952430625</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1721952430625</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="create rep" />
+     <MESSAGE value="create main/fabric.py" />
+-    <option name="LAST_COMMIT_MESSAGE" value="create main/fabric.py" />
++    <MESSAGE value="bkjn" />
++    <option name="LAST_COMMIT_MESSAGE" value="bkjn" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/ZOVlauncher.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/ZOVlauncher.iml b/.idea/ZOVlauncher.iml
+--- a/.idea/ZOVlauncher.iml	(revision 8a7694d14945dd3b63a77b371800b8990cc534b0)
++++ b/.idea/ZOVlauncher.iml	(date 1721952518959)
+@@ -3,8 +3,9 @@
+   <component name="NewModuleRootManager">
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
++      <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="Python 3.11 (ZOVLauncher)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
