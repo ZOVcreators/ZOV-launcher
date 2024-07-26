@@ -177,6 +177,7 @@ class Ui_MainWindow(object):
 
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
