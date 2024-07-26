@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="create non functional test ui">
+    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="create main/fabric.py">
+      <change beforePath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FabricInstall.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,21 +104,12 @@
       <option name="project" value="LOCAL" />
       <updated>1721952175060</updated>
     </task>
-    <task id="LOCAL-00004" summary="create non functional test ui">
-      <option name="closed" value="true" />
-      <created>1721981343468</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1721981343468</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create rep" />
     <MESSAGE value="create main/fabric.py" />
-    <MESSAGE value="create non functional test ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="create non functional test ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="create main/fabric.py" />
   </component>
 </project>
