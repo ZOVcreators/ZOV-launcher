@@ -10,6 +10,8 @@
 
             Widget:
                 size_hint_x: 1
+                size: root.width, root.height * 0.1  # 100% от ширины окна и 10% от высоты окна
+                pos: 0, root.height * 0.9  # Верхний край окна
                 canvas.before:
                     Color:
                         rgba: (0.8, 0.2, 0.2, 1)  # Красный цвет
@@ -20,6 +22,8 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 1
+            size: root.width, root.height * 0.9  # 100% от ширины окна и 90% от высоты окна
+            pos: 0, 0  # Нижняя часть окна
             canvas.before:
                 Color:
                     rgba: (0.2, 0.8, 0.2, 1)  # Зеленый фон
@@ -28,18 +32,17 @@
                     pos: self.pos
 
     Button:
-        id: my_button
+        id: JAVAPlayButton
         text: 'Click Me'
         size_hint: None, None
         width: min(root.width * 0.4, root.height * 0.1 * 4)  # 40% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
         height: self.width / 4
-        pos_hint: {'center_x': 0.55, 'center_y': 0.90}  # Позиция
-        on_release: root.JavaStarting()
+        pos_hint: {'center_x': 0.65, 'center_y': 0.90}  # Позиция кнопки
 
     BoxLayout:
         size_hint: None, None
-        size: root.width * 0.3, root.height * 1  # Размер
-        pos: 0, root.height * 0  # Позиция
+        size: root.width * 0.3, root.height * 1  # 30% от ширины окна и 100% от высоты окна
+        pos: 0, 0  # Левый нижний угол окна
         canvas.before:
             Color:
                 rgba: (0.2, 0.2, 0.8, 1)  # Синий цвет
