@@ -1,0 +1,197 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import sys\r\nimport minecraft_launcher_lib\r\nfrom PySide6.QtWidgets import QApplication, QMainWindow\r\nfrom ZOVUI import Ui_MainWindow\r\nimport subprocess\r\nfrom uuid import uuid1\r\n\r\nminecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()\r\n\r\n\r\n\r\n\r\nclass ExpenseTracker(QMainWindow):\r\n    def __init__(self):\r\n        super(ExpenseTracker, self).__init__()\r\n        self.ui = Ui_MainWindow()\r\n        self.ui.setupUi(self)\r\n\r\n        self.ui.PlayButtonJAVA.clicked.connect(self.run)\r\n        self.setStyleSheet(f\"QMainWindow {{ border-image: url('Image (1).png') 0 0 0 0 stretch stretch; }}\")\r\n\r\n    def run(self):\r\n        version = input('vers')\r\n        username = input('name')\r\n\r\n\r\n        minecraft_launcher_lib.install.install_minecraft_version(versionid=version, minecraft_directory=minecraft_directory)\r\n        options = {\r\n            'username': username,\r\n            'uuid': str(uuid1()),\r\n            'token': ''\r\n        }\r\n\r\n        subprocess.call(minecraft_launcher_lib.command.get_minecraft_command(version=version, minecraft_directory=minecraft_directory, options=options))\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    app = QApplication(sys.argv)\r\n    window = ExpenseTracker()\r\n    window.show()\r\n\r\n    sys.exit(app.exec())
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision 7c0623cc8572be3818c6d9d0428818e21efcef47)
++++ b/main.py	(date 1722021744988)
+@@ -1,7 +1,8 @@
+ import sys
+ import minecraft_launcher_lib
+-from PySide6.QtWidgets import QApplication, QMainWindow
++from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton, QTextEdit
+ from ZOVUI import Ui_MainWindow
++
+ import subprocess
+ from uuid import uuid1
+ 
+@@ -19,6 +20,8 @@
+         self.ui.PlayButtonJAVA.clicked.connect(self.run)
+         self.setStyleSheet(f"QMainWindow {{ border-image: url('Image (1).png') 0 0 0 0 stretch stretch; }}")
+ 
++
++
+     def run(self):
+         version = input('vers')
+         username = input('name')
+Index: ZOVUI.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># -*- coding: utf-8 -*-\r\n\r\n################################################################################\r\n## Form generated from reading UI file 'ZOVUI.ui'\r\n##\r\n## Created by: Qt User Interface Compiler version 6.7.2\r\n##\r\n## WARNING! All changes made in this file will be lost when recompiling UI file!\r\n################################################################################\r\n\r\nfrom PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt\r\nfrom PySide6.QtGui import QFont, QIcon, QPalette, QColor, QBrush, QResizeEvent\r\nfrom PySide6.QtWidgets import QApplication, QFrame, QHBoxLayout, QMainWindow, QPushButton, QScrollArea, QVBoxLayout, QWidget\r\nimport Icons\r\n\r\nclass Ui_MainWindow(object):\r\n    def setupUi(self, MainWindow):\r\n        if not MainWindow.objectName():\r\n            MainWindow.setObjectName(u\"MainWindow\")\r\n        MainWindow.resize(813, 508)\r\n        MainWindow.setStyleSheet(u\"background-color: rgba(51, 51, 51, 1);\")\r\n        self.centralwidget = QWidget(MainWindow)\r\n        self.centralwidget.setObjectName(u\"centralwidget\")\r\n        self.frame_2 = QFrame(self.centralwidget)\r\n        self.frame_2.setObjectName(u\"frame_2\")\r\n        self.frame_2.setGeometry(QRect(200, 0, 621, 61))\r\n        self.frame_2.setStyleSheet(u\"background-color: rgba(33, 33, 33, 1);\")\r\n        self.verticalLayoutWidget = QWidget(self.frame_2)\r\n        self.verticalLayoutWidget.setObjectName(u\"verticalLayoutWidget\")\r\n        self.verticalLayoutWidget.setGeometry(QRect(0, 0, 611, 61))\r\n        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)\r\n        self.verticalLayout.setObjectName(u\"verticalLayout\")\r\n        self.verticalLayout.setContentsMargins(0, 0, 0, 0)\r\n        self.frame_3 = QFrame(self.verticalLayoutWidget)\r\n        self.frame_3.setObjectName(u\"frame_3\")\r\n        self.frame_3.setStyleSheet(u\"background-color: rgba(23, 23, 23, 1);\")\r\n        self.VersionButtonJAVA = QPushButton(self.frame_3)\r\n        self.VersionButtonJAVA.setObjectName(u\"VersionButtonJAVA\")\r\n        self.VersionButtonJAVA.setGeometry(QRect(50, 6, 91, 31))\r\n        font = QFont()\r\n        font.setPointSize(9)\r\n        self.VersionButtonJAVA.setFont(font)\r\n        self.VersionButtonJAVA.setAutoFillBackground(False)\r\n        self.VersionButtonJAVA.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.VersionButtonJAVA.setIconSize(QSize(16, 16))\r\n        self.AllVersionsJAVA = QPushButton(self.frame_3)\r\n        self.AllVersionsJAVA.setObjectName(u\"AllVersionsJAVA\")\r\n        self.AllVersionsJAVA.setGeometry(QRect(30, 6, 20, 31))\r\n        font1 = QFont()\r\n        font1.setPointSize(28)\r\n        self.AllVersionsJAVA.setFont(font1)\r\n        self.AllVersionsJAVA.setAutoFillBackground(False)\r\n        self.AllVersionsJAVA.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.AllVersionsJAVA.setIconSize(QSize(16, 16))\r\n        self.SkinButtonJAVA = QPushButton(self.frame_3)\r\n        self.SkinButtonJAVA.setObjectName(u\"SkinButtonJAVA\")\r\n        self.SkinButtonJAVA.setGeometry(QRect(560, 5, 51, 51))\r\n        self.SkinButtonJAVA.setAutoFillBackground(False)\r\n        self.SkinButtonJAVA.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n\r\n        self.verticalLayout.addWidget(self.frame_3)\r\n\r\n        self.verticalLayoutWidget_2 = QWidget(self.centralwidget)\r\n        self.verticalLayoutWidget_2.setObjectName(u\"verticalLayoutWidget_2\")\r\n        self.verticalLayoutWidget_2.setGeometry(QRect(400, 40, 201, 67))\r\n        self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)\r\n        self.verticalLayout_2.setObjectName(u\"verticalLayout_2\")\r\n        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)\r\n        self.PlayButtonJAVA = QPushButton(self.verticalLayoutWidget_2)\r\n        self.PlayButtonJAVA.setObjectName(u\"PlayButtonJAVA\")\r\n        palette = QPalette()\r\n        brush = QBrush(QColor(54, 54, 54, 255))\r\n        brush.setStyle(Qt.SolidPattern)\r\n        palette.setBrush(QPalette.Active, QPalette.Button, brush)\r\n        palette.setBrush(QPalette.Active, QPalette.Base, brush)\r\n        palette.setBrush(QPalette.Active, QPalette.Window, brush)\r\n        palette.setBrush(QPalette.Inactive, QPalette.Button, brush)\r\n        palette.setBrush(QPalette.Inactive, QPalette.Base, brush)\r\n        palette.setBrush(QPalette.Inactive, QPalette.Window, brush)\r\n        palette.setBrush(QPalette.Disabled, QPalette.Button, brush)\r\n        palette.setBrush(QPalette.Disabled, QPalette.Base, brush)\r\n        palette.setBrush(QPalette.Disabled, QPalette.Window, brush)\r\n        self.PlayButtonJAVA.setPalette(palette)\r\n        self.PlayButtonJAVA.setFont(font1)\r\n        self.PlayButtonJAVA.setMouseTracking(False)\r\n        self.PlayButtonJAVA.setAutoFillBackground(False)\r\n        self.PlayButtonJAVA.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.PlayButtonJAVA.setIconSize(QSize(16, 16))\r\n        self.PlayButtonJAVA.setAutoDefault(False)\r\n        self.PlayButtonJAVA.setFlat(False)\r\n\r\n        self.verticalLayout_2.addWidget(self.PlayButtonJAVA)\r\n\r\n        self.horizontalLayoutWidget = QWidget(self.centralwidget)\r\n        self.horizontalLayoutWidget.setObjectName(u\"horizontalLayoutWidget\")\r\n        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 201, 441))\r\n        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)\r\n        self.horizontalLayout.setObjectName(u\"horizontalLayout\")\r\n        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)\r\n        self.scrollArea = QScrollArea(self.horizontalLayoutWidget)\r\n        self.scrollArea.setObjectName(u\"scrollArea\")\r\n        self.scrollArea.setStyleSheet(u\"background-color: rgba(33, 33, 33, 0.9);\")\r\n        self.scrollArea.setWidgetResizable(True)\r\n        self.scrollAreaWidgetContents = QWidget()\r\n        self.scrollAreaWidgetContents.setObjectName(u\"scrollAreaWidgetContents\")\r\n        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 197, 437))\r\n        self.akauntButton = QPushButton(self.scrollAreaWidgetContents)\r\n        self.akauntButton.setObjectName(u\"akauntButton\")\r\n        self.akauntButton.setGeometry(QRect(0, 5, 201, 51))\r\n        self.akauntButton.setAutoFillBackground(False)\r\n        self.akauntButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.JAVAButton = QPushButton(self.scrollAreaWidgetContents)\r\n        self.JAVAButton.setObjectName(u\"JAVAButton\")\r\n        self.JAVAButton.setGeometry(QRect(0, 60, 201, 51))\r\n        self.JAVAButton.setAutoFillBackground(False)\r\n        self.JAVAButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n\r\n        self.BedrockButton = QPushButton(self.scrollAreaWidgetContents)\r\n        self.BedrockButton.setObjectName(u\"BedrockButton\")\r\n        self.BedrockButton.setGeometry(QRect(0, 115, 201, 51))\r\n        self.BedrockButton.setAutoFillBackground(False)\r\n        self.BedrockButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.AddButton = QPushButton(self.scrollAreaWidgetContents)\r\n        self.AddButton.setObjectName(u\"AddButton\")\r\n        self.AddButton.setGeometry(QRect(0, 170, 201, 51))\r\n        self.AddButton.setFont(font1)\r\n        self.AddButton.setAutoFillBackground(False)\r\n        self.AddButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.AddButton.setIconSize(QSize(16, 16))\r\n        self.AddButton.setAutoDefault(False)\r\n        self.AddButton.setFlat(False)\r\n        self.scrollArea.setWidget(self.scrollAreaWidgetContents)\r\n\r\n        self.horizontalLayout.addWidget(self.scrollArea)\r\n\r\n        self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)\r\n        self.horizontalLayoutWidget_2.setObjectName(u\"horizontalLayoutWidget_2\")\r\n        self.horizontalLayoutWidget_2.setGeometry(QRect(-10, 440, 211, 71))\r\n        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget_2)\r\n        self.horizontalLayout_2.setObjectName(u\"horizontalLayout_2\")\r\n        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)\r\n        self.frame = QFrame(self.horizontalLayoutWidget_2)\r\n        self.frame.setObjectName(u\"frame\")\r\n        palette1 = QPalette()\r\n        brush1 = QBrush(QColor(33, 33, 33, 229))\r\n        brush1.setStyle(Qt.SolidPattern)\r\n        palette1.setBrush(QPalette.Active, QPalette.Button, brush1)\r\n        palette1.setBrush(QPalette.Active, QPalette.Base, brush1)\r\n        palette1.setBrush(QPalette.Active, QPalette.Window, brush1)\r\n        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush1)\r\n        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush1)\r\n        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush1)\r\n        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)\r\n        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)\r\n        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)\r\n        self.frame.setPalette(palette1)\r\n        self.frame.setStyleSheet(u\"background-color: rgba(33, 33, 33, 0.9);\")\r\n        self.SettingsButton = QPushButton(self.frame)\r\n        self.SettingsButton.setObjectName(u\"SettingsButton\")\r\n        self.SettingsButton.setGeometry(QRect(0, 0, 67, 71))\r\n        self.SettingsButton.setAutoFillBackground(False)\r\n        self.SettingsButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        icon = QIcon()\r\n        icon.addFile(u\":/Icons/Icons/icons8-settings-100.png\", QSize(), QIcon.Mode.Normal, QIcon.State.Off)\r\n        self.SettingsButton.setIcon(icon)\r\n        self.SettingsButton.setIconSize(QSize(60, 60))\r\n        self.FriendsButton = QPushButton(self.frame)\r\n        self.FriendsButton.setObjectName(u\"FriendsButton\")\r\n        self.FriendsButton.setGeometry(QRect(70, 0, 67, 71))\r\n        self.FriendsButton.setAutoFillBackground(False)\r\n        self.FriendsButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        self.ServerButton = QPushButton(self.frame)\r\n        self.ServerButton.setObjectName(u\"ServerButton\")\r\n        self.ServerButton.setGeometry(QRect(140, 0, 66, 71))\r\n        self.ServerButton.setAutoFillBackground(False)\r\n        self.ServerButton.setStyleSheet(u\"background-color: rgba(54, 54, 54, 1);\\n\"\r\n\"border: None;\")\r\n        icon1 = QIcon()\r\n        icon1.addFile(u\":/Icons/Icons/icons8-news-100.png\", QSize(), QIcon.Mode.Normal, QIcon.State.Off)\r\n        self.ServerButton.setIcon(icon1)\r\n        self.ServerButton.setIconSize(QSize(50, 50))\r\n\r\n        self.horizontalLayout_2.addWidget(self.frame)\r\n\r\n        MainWindow.setCentralWidget(self.centralwidget)\r\n\r\n        self.retranslateUi(MainWindow)\r\n\r\n        self.PlayButtonJAVA.setDefault(False)\r\n\r\n\r\n        QMetaObject.connectSlotsByName(MainWindow)\r\n\r\n    def retranslateUi(self, MainWindow):\r\n        MainWindow.setWindowTitle(QCoreApplication.translate(\"MainWindow\", u\"ZOV Launcher\", None))\r\n        self.VersionButtonJAVA.setText(QCoreApplication.translate(\"MainWindow\", u\"\\u0432\\u0435\\u0440\\u0441\\u0438\\u0438\", None))\r\n        self.AllVersionsJAVA.setText(\"\")\r\n        self.SkinButtonJAVA.setText(QCoreApplication.translate(\"MainWindow\", u\"Skins\", None))\r\n        self.PlayButtonJAVA.setText(QCoreApplication.translate(\"MainWindow\", u\"Play\", None))\r\n        self.akauntButton.setText(QCoreApplication.translate(\"MainWindow\", u\"\\u0410\\u041a\\u041a\\u0410\\u0423\\u041d\\u0422\", None))\r\n        self.JAVAButton.setText(QCoreApplication.translate(\"MainWindow\", u\"JAVA\", None))\r\n        self.BedrockButton.setText(QCoreApplication.translate(\"MainWindow\", u\"BEDROCK\", None))\r\n        self.AddButton.setText(QCoreApplication.translate(\"MainWindow\", u\"+\", None))\r\n        self.SettingsButton.setText(\"\")\r\n        self.FriendsButton.setText(QCoreApplication.translate(\"MainWindow\", u\"PushButton\", None))\r\n        self.ServerButton.setText(\"\")\r\n    # retranslateUi\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ZOVUI.py b/ZOVUI.py
+--- a/ZOVUI.py	(revision 7c0623cc8572be3818c6d9d0428818e21efcef47)
++++ b/ZOVUI.py	(date 1722021744994)
+@@ -8,9 +8,10 @@
+ ## WARNING! All changes made in this file will be lost when recompiling UI file!
+ ################################################################################
+ 
++import sys
+ from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+ from PySide6.QtGui import QFont, QIcon, QPalette, QColor, QBrush, QResizeEvent
+-from PySide6.QtWidgets import QApplication, QFrame, QHBoxLayout, QMainWindow, QPushButton, QScrollArea, QVBoxLayout, QWidget
++from PySide6.QtWidgets import QFrame, QScrollArea, QApplication, QMainWindow, QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton, QTextEdit, QMainWindow
+ import Icons
+ 
+ class Ui_MainWindow(object):
+@@ -199,7 +200,6 @@
+         self.PlayButtonJAVA.setDefault(False)
+ 
+ 
+-        QMetaObject.connectSlotsByName(MainWindow)
+ 
+     def retranslateUi(self, MainWindow):
+         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"ZOV Launcher", None))
+Index: vbeadg.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vbeadg.py b/vbeadg.py
+new file mode 100644
+--- /dev/null	(date 1722020922477)
++++ b/vbeadg.py	(date 1722020922477)
+@@ -0,0 +1,49 @@
++import sys
++from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QHBoxLayout, QVBoxLayout, QPushButton, QTextEdit
++
++
++class Window(QMainWindow):  # Создаем класс Window, который наследует все от класса QMainWindow
++    def __init__(self):  # Создаем конструктор
++        super().__init__()  # С помощью функции super вызывем конструктор из родительского класса
++
++        self.setGeometry(700, 200, 450, 650)  # Выбираем отступы, ширу и высоту окна
++        self.setWindowTitle('КБЖУ')  # Указываем название приложения
++
++        self.heading = QLabel()  # Создаем заголовок приложения
++        self.heading.setText('Заголовок')  # Текст в этом заголовке
++        self.heading.setStyleSheet('background-color: rgb(68, 207, 203);')  # Фон заголовка
++
++        self.text_edit = QTextEdit()
++
++        self.button_close = QPushButton('Закрыть')
++        self.button_close.clicked.connect(self.close)
++
++        self.button_save = QPushButton('Сохранить')
++
++        layout_buttons = QHBoxLayout()
++        layout_buttons.addWidget(self.button_save)
++        layout_buttons.addWidget(self.button_close)
++
++        main_layout = QVBoxLayout()
++        main_layout.addWidget(self.heading)
++        main_layout.addWidget(self.text_edit)
++        main_layout.addLayout(layout_buttons)
++
++        central_widget = QWidget()
++        central_widget.setLayout(main_layout)
++
++        self.setCentralWidget(central_widget)
++
++
++# Функция которая создает приложение
++def main():
++    app = QApplication(sys.argv)  # создаем объект в качестве параметра предаём информацию о системе
++
++    window = Window()  # Создаем объект(Окно  приложения) на основе нашего класса Window
++    window.show()  # Метод show показывает созданное окно
++
++    sys.exit(app.exec())  # Корректное закрытие приложения
++
++
++if __name__ == '__main__':
++    main()
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"Запуск игры по кнопке Play\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ZOVUI.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ZOVUI.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-1.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-1.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-2.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-2.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-3.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-3.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-4.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-4.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-5.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-5.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-6.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-6.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/2024-07-26-7.log.gz\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/2024-07-26-7.log.gz\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logs/latest.log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logs/latest.log\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/main.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;ZOVcreators&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/ZOVcreators/ZOV-launcher.git&quot;,\r\n    &quot;accountId&quot;: &quot;7abbb040-f38f-4ded-9eca-596528beb8dd&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2jkw70e1ccAxvbxHsanoacyzq7p\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.ZOVUI.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.designer.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.gui.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.ui_test.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.untitled.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\Program Files (x86)\\PycharmProjects\\ZOVlauncher\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62\" name=\"Changes\" comment=\"\" />\r\n      <created>1721944211939</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1721944211939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"create rep\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721944315068</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721944315068</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721945255599</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721945255599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721952175060</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721952175060</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"create main/fabric.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722011581215</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722011581215</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Запуск игры по кнопке Play\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722011649349</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722011649349</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"create rep\" />\r\n    <MESSAGE value=\"create main/fabric.py\" />\r\n    <MESSAGE value=\"Запуск игры по кнопке Play\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Запуск игры по кнопке Play\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7c0623cc8572be3818c6d9d0428818e21efcef47)
++++ b/.idea/workspace.xml	(date 1722021544563)
+@@ -5,16 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="Запуск игры по кнопке Play">
++      <change afterPath="$PROJECT_DIR$/vbeadg.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/ZOVUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZOVUI.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-1.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-2.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-2.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-3.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-4.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-5.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-5.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-6.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-6.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/2024-07-26-7.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/logs/2024-07-26-7.log.gz" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logs/latest.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/latest.log" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -53,19 +46,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Python.ZOVUI.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.designer.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.ui_test.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.untitled.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Python.ZOVUI.executor": "Run",
++    "Python.designer.executor": "Run",
++    "Python.gui.executor": "Run",
++    "Python.main.executor": "Run",
++    "Python.ui_test.executor": "Run",
++    "Python.untitled.executor": "Run",
++    "Python.vbeadg.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="E:\Program Files (x86)\PycharmProjects\ZOVlauncher" />
+@@ -127,7 +121,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1722011649349</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Запуск игры по кнопке Play">
++      <option name="closed" value="true" />
++      <created>1722019702811</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1722019702811</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
