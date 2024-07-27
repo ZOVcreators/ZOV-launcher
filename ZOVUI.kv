@@ -6,23 +6,13 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
-            height: self.parent.height * 0.1  # 10% от высоты окна
+            height: root.height * 0.1  # 10% от высоты окна
 
-            BoxLayout:
-                size_hint_x: None
-                width: self.parent.width * 0.1  # 10% от ширины окна
-                canvas.before:
-                    Color:
-                        rgba: (0.2, 0.2, 0.8, 1)
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-
-            BoxLayout:
+            Widget:
                 size_hint_x: 1
                 canvas.before:
                     Color:
-                        rgba: (0.8, 0.2, 0.2, 1)
+                        rgba: (0.8, 0.2, 0.2, 1)  # Красный цвет
                     Rectangle:
                         size: self.size
                         pos: self.pos
@@ -30,30 +20,29 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 1
-
-            BoxLayout:
-                size_hint_x: None
-                width: self.parent.width * 0.1  # 10% от ширины окна
-                canvas.before:
-                    Color:
-                        rgba: (0.2, 0.2, 0.8, 1)
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-
-            BoxLayout:
-                size_hint_x: 1
-                canvas.before:
-                    Color:
-                        rgba: (0.2, 0.8, 0.2, 1)
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
+            canvas.before:
+                Color:
+                    rgba: (0.2, 0.8, 0.2, 1)  # Зеленый фон
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
 
     Button:
         id: my_button
         text: 'Click Me'
         size_hint: None, None
-        width: min(self.parent.width * 0.1, self.parent.height * 0.1 * 4)  # 10% от ширины окна или 40% от высоты окна, в зависимости от того, что меньше
+        width: min(root.width * 0.4, root.height * 0.1 * 4)  # 40% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
         height: self.width / 4
-        pos_hint: {'center_x': 0.55, 'center_y': 0.90}
+        pos_hint: {'center_x': 0.55, 'center_y': 0.90}  # Позиция
+        on_release: root.JavaStarting()
+
+    BoxLayout:
+        size_hint: None, None
+        size: root.width * 0.3, root.height * 1  # Размер
+        pos: 0, root.height * 0  # Позиция
+        canvas.before:
+            Color:
+                rgba: (0.2, 0.2, 0.8, 1)  # Синий цвет
+            Rectangle:
+                size: self.size
+                pos: self.pos
