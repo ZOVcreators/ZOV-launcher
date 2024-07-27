@@ -1,0 +1,58 @@
+<ZOVUI>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: self.parent.height * 0.1
+
+            BoxLayout:
+                size_hint_x: None
+                width: self.parent.width * 0.1
+                canvas.before:
+                    Color:
+                        rgba: (0.2, 0.2, 0.8, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            BoxLayout:
+                size_hint_x: 1
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.2, 0.2, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 1
+
+            BoxLayout:
+                size_hint_x: None
+                width: self.parent.width * 0.1
+                canvas.before:
+                    Color:
+                        rgba: (0.2, 0.2, 0.8, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            BoxLayout:
+                size_hint_x: 1
+                canvas.before:
+                    Color:
+                        rgba: (0.2, 0.8, 0.2, 1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+    Button:
+        id: my_button
+        text: 'Click Me'
+        size_hint: None, None
+        size: 200, 50
+        pos_hint: {'center_x': 0.55, 'center_y': 0.90}  # 65% от ширины и 75% от высоты окна
