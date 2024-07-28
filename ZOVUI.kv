@@ -90,7 +90,6 @@
         width: min(root.width * 0.4, root.height * 0.1 * 4)  # 40% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
         height: self.width / 4
         pos_hint: {'center_x': 0.65, 'center_y': 0.90}  # Позиция кнопки
-        on_release: root.JavaStarting()
 
     Button:
         id: button_5
@@ -101,8 +100,24 @@
         pos_hint: {'center_x': 0.40, 'center_y': 0.95}  # Позиция кнопки
         background_color: (0.2, 0.2, 0.2, 1)
 
+    Widget:
+        id: visible_square
+        size_hint: None, None
+        width: min(root.width * 0.5, root.height * 0.5)  # Примерно 5% от ширины или высоты окна
+        height: self.width  # Делает квадратным
+        pos: 10, 10
+        canvas.before:
+            Color:
+                rgba: (0.5, 0.5, 0.5, 1)  # Серый цвет для видимости
+            Rectangle:
+                size: self.size
+                pos: self.pos
 
-
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: self.size
+            pos: self.pos
 
     Button:
         text: 'Button 6'
@@ -111,8 +126,3 @@
         height: self.width  # Делает кнопку квадратной
         pos: button_5.x - self.width, button_5.y  # Привязка по x и y
         background_color: (0.2, 0.2, 0.2, 1)
-
-
-
-
-
