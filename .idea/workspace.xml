@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="Запуск игры по кнопке Play">
-      <change beforePath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ZOVlauncher.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ac697fc0-3b2f-4a20-b3ad-cf4cb8c95d62" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.kv" beforeDir="false" afterPath="$PROJECT_DIR$/test.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
@@ -158,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722019702811</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test">
+      <option name="closed" value="true" />
+      <created>1722128850895</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722128850895</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +181,7 @@
     <MESSAGE value="create rep" />
     <MESSAGE value="create main/fabric.py" />
     <MESSAGE value="Запуск игры по кнопке Play" />
-    <option name="LAST_COMMIT_MESSAGE" value="Запуск игры по кнопке Play" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

@@ -1,71 +1,8 @@
-<CustomBoxLayout>:
-    orientation: 'vertical'
-
-    BoxLayout:
-        id: color_boxes
-        orientation: 'vertical'
-        size_hint_y: None
-        height: self.minimum_height
-
-    ColorBox:
-        id: red_box
-        color: 1, 0, 0, 1
-        size_hint_y: None
-        height: 50
-
-    ColorBox:
-        id: green_box
-        color: 0, 1, 0, 1
-        size_hint_y: None
-        height: 50
-
-    ColorBox:
-        id: blue_box
-        color: 0, 0, 1, 1
-        size_hint_y: None
-        height: 50
-
-    ColorBox:
-        id: yellow_box
-        color: 1, 1, 0, 1
-        size_hint_y: None
-        height: 50
-
-<MainScreen>:
-    CustomBoxLayout:
-        id: main_layout
-        padding: 10
-        spacing: 10
-
-        ScrollView:
-            size_hint: 1, 0.5
-
-            BoxLayout:
-                orientation: 'vertical'
-                size_hint_y: None
-                height: self.minimum_height
-                spacing: 10
-
-                Button:
-                    text: 'Red'
-                    size_hint_y: None
-                    height: 40
-                    on_press: app.change_box_color('red_box', (1, 0, 0, 1))
-
-                Button:
-                    text: 'Green'
-                    size_hint_y: None
-                    height: 40
-                    on_press: app.change_box_color('green_box', (0, 1, 0, 1))
-
-                Button:
-                    text: 'Blue'
-                    size_hint_y: None
-                    height: 40
-                    on_press: app.change_box_color('blue_box', (0, 0, 1, 1))
-
-                Button:
-                    text: 'Yellow'
-                    size_hint_y: None
-                    height: 40
-                    on_press: app.change_box_color('yellow_box', (1, 1, 0, 1))
+<MyWidget>:
+    orientation: "vertical"
+    Label:
+        text: "Это мой виджет!"
+<MyWidgetxxx>:
+    orientation: "vertical"
+    Label:
+        text: "Это мой виджет!!!!!!!!!!!!!!!!!!"
