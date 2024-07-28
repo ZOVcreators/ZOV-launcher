@@ -11,6 +11,7 @@ import subprocess
 Window.size = (960, 540)
 
 
+
 class ZOVUI(FloatLayout):
     def JavaStarting(self):
         minecraft_directory = minecraft_launcher_lib.utils.get_minecraft_directory()
@@ -27,10 +28,13 @@ class ZOVUI(FloatLayout):
         subprocess.call(minecraft_launcher_lib.command.get_minecraft_command(version=version, minecraft_directory=minecraft_directory, options=options))
 
 
+
+
 class MyApp(App):
     def build(self):
-        Builder.load_file('ZOVUI.kv')
         return ZOVUI()
+
+    Builder.load_file('ZOVUI.kv')
 
 if __name__ == '__main__':
     MyApp().run()

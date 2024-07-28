@@ -9,6 +9,7 @@ class MyWidget(BoxLayout):
 class MyApp(App):
     def build(self):
         return MyWidget()
+
     Builder.load_file("test.kv")
 
 if __name__ == "__main__":
