@@ -31,14 +31,6 @@
                     size: self.size
                     pos: self.pos
 
-    Button:
-        id: JAVAPlayButton
-        text: 'Click Me'
-        size_hint: None, None
-        width: min(root.width * 0.4, root.height * 0.1 * 4)  # 40% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
-        height: self.width / 4
-        pos_hint: {'center_x': 0.65, 'center_y': 0.90}  # Позиция кнопки
-
     BoxLayout:
         size_hint: None, None
         size: root.width * 0.3, root.height * 1  # 30% от ширины окна и 100% от высоты окна
@@ -49,3 +41,88 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 1
+
+            Button:
+                text: 'Button 1'
+                size_hint_y: None
+                height: 40
+                background_color: (0.2, 0.2, 0.2, 1)
+
+            ScrollView:
+                size_hint: 1, 1
+                do_scroll_x: False
+                do_scroll_y: True
+
+                BoxLayout:
+                    id: button_layout
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 10
+                    padding: 10
+
+                    Button:
+                        text: 'Button 2'
+                        size_hint_y: None
+                        height: 40
+                        background_color: (0.2, 0.2, 0.2, 1)
+
+                    Button:
+                        text: 'Button 3'
+                        size_hint_y: None
+                        height: 40
+                        background_color: (0.2, 0.2, 0.2, 1)
+
+                    Button:
+                        text: 'Button 4'
+                        size_hint_y: None
+                        height: 40
+                        background_color: (0.2, 0.2, 0.2, 1)
+
+    Button:
+        id: JAVAPlayButton
+        text: 'Click Me'
+        size_hint: None, None
+        width: min(root.width * 0.4, root.height * 0.1 * 4)  # 40% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
+        height: self.width / 4
+        pos_hint: {'center_x': 0.65, 'center_y': 0.90}  # Позиция кнопки
+
+    Button:
+        id: button_5
+        text: 'Button 5'
+        size_hint: None, None
+        width: min(root.width * 0.2, root.height * 0.1 * 2)  # 20% от ширины окна или 10% от высоты окна, в зависимости от того, что меньше
+        height: self.width / 4
+        pos_hint: {'center_x': 0.40, 'center_y': 0.95}  # Позиция кнопки
+        background_color: (0.2, 0.2, 0.2, 1)
+
+    Widget:
+        id: visible_square
+        size_hint: None, None
+        width: min(root.width * 0.5, root.height * 0.5)  # Примерно 5% от ширины или высоты окна
+        height: self.width  # Делает квадратным
+        pos: 10, 10
+        canvas.before:
+            Color:
+                rgba: (0.5, 0.5, 0.5, 1)  # Серый цвет для видимости
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: self.size
+            pos: self.pos
+
+    Button:
+        text: 'Button 6'
+        size_hint: None, None
+        width: min(root.width * 0.05, root.height * 0.05)  # Примерно 5% от ширины или высоты окна
+        height: self.width  # Делает кнопку квадратной
+        pos: button_5.x - self.width, button_5.y  # Привязка по x и y
+        background_color: (0.2, 0.2, 0.2, 1)
