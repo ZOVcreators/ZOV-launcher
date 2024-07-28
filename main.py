@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.lang import Builder
 from kivy.core.window import Window
+from kivy.uix.widget import Widget
 from uuid import uuid1
 import minecraft_launcher_lib
 import subprocess
@@ -24,7 +25,6 @@ class ZOVUI(FloatLayout):
         }
 
         subprocess.call(minecraft_launcher_lib.command.get_minecraft_command(version=version, minecraft_directory=minecraft_directory, options=options))
-        print('feafea')
 
 
 class MyApp(App):
