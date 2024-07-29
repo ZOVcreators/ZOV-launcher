@@ -103,9 +103,9 @@
     Widget:
         id: visible_square
         size_hint: None, None
-        width: min(root.width * 0.5, root.height * 0.5)  # Примерно 5% от ширины или высоты окна
-        height: self.width  # Делает квадратным
-        pos: 10, 10
+        width: root.width * 0.23  # 23% от ширины окна
+        height: root.height * 0.3  # 30% от высоты окна
+        pos_hint: {'center_x': 0.415, 'center_y': 0.776}
         canvas.before:
             Color:
                 rgba: (0.5, 0.5, 0.5, 1)  # Серый цвет для видимости
@@ -122,7 +122,58 @@
     Button:
         text: 'Button 6'
         size_hint: None, None
-        width: min(root.width * 0.05, root.height * 0.05)  # Примерно 5% от ширины или высоты окна
-        height: self.width  # Делает кнопку квадратной
-        pos: button_5.x - self.width, button_5.y  # Привязка по x и y
+        width: min(root.width * 0.02, root.height * 0.05)  # Примерно 5% от ширины или высоты окна
+        height: min(root.width * 0.05, root.height * 0.05)
+        pos: button_5.x - self.width + 2.6, button_5.y  # Привязка по x и y
         background_color: (0.2, 0.2, 0.2, 1)
+
+    BoxLayout:
+        size_hint: None, None
+        size: root.width * 0.3, root.height * 0.18  # Примерно 30% от ширины окна и 18% от высоты окна
+        pos_hint: {'x': 0, 'y': 0}  # Левый нижний угол
+        canvas.before:
+            Color:
+                rgba: (0.5, 0.5, 0.5, 1)  # Серый цвет для видимости
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        AnchorLayout:
+            size_hint: None, None
+            size: self.size
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: None, None
+                size: self.size
+
+                Button:
+                    text: 'Button 7'
+                    size_hint: None, None
+                    width: min(root.width * 0.176, root.height * 0.176)
+                    height: self.width
+                    background_color: (0.2, 0.2, 0.2, 1)
+
+                Button:
+                    text: 'Button 8'
+                    size_hint: None, None
+                    width: min(root.width * 0.176, root.height * 0.176)
+                    height: self.width
+                    background_color: (0.2, 0.2, 0.2, 1)
+
+                Button:
+                    text: 'Button 9'
+                    size_hint: None, None
+                    width: min(root.width * 0.176, root.height * 0.176)
+                    height: self.width
+                    background_color: (0.2, 0.2, 0.2, 1)
+
+    AnchorLayout:
+        size_hint: None, None
+        size: root.width * 0.1, root.width * 0.1  # Размер кнопки зависит от ширины окна
+        pos_hint: {'right': 1, 'top': 1}  # Правый верхний угол
+
+        Button:
+            text: 'Square'
+            size_hint: 0.5, 0.5
+            background_color: (0.2, 0.2, 0.2, 1)
